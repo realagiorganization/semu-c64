@@ -12,6 +12,19 @@ This project uses GitHub Issues to track ongoing development, discuss project pl
 
 Visit our [Issues page on GitHub](https://github.com/jserv/semu/issues) to search and submit.
 
+## Submitting Changes
+
+1. Create a topic branch before you start editing:
+   `git checkout -b feature/my-change`.
+2. Make your edits, keep commits focused, and run the relevant build or test
+   commands (`make`, `make check`, scripts in `scripts/`) before committing.
+3. Stage files explicitly: `git add path/to/file.c`.
+4. Craft a meaningful commit message and sign off if required:
+   `git commit -s -m "component: concise summary"`.
+5. Push your branch to your fork or origin: `git push origin feature/my-change`.
+6. Open a pull request and describe the motivation, testing, and any follow-up
+   work. Reference related issues where applicable.
+
 ## Coding Convention
 
 We welcome all contributions from corporate, academic and individual developers. However, there are a number of fundamental ground rules that you must adhere to in order to participate. These rules are outlined as follows:

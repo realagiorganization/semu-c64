@@ -1,0 +1,78 @@
+  CC	riscv.o
+riscv.c:332:16: warning: unknown attribute 'nonreentrant' ignored [-Wunknown-attributes]
+  332 | __attribute__((nonreentrant))
+      |                ^~~~~~~~~~~~
+1 warning generated.
+  CC	ram.o
+  CC	plic.o
+plic.c:20:18: warning: initializing 'emu_state_t *' with an expression of type 'const emu_state_t *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+   20 |     emu_state_t *data = (const emu_state_t *) vm->priv;
+      |                  ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+  CC	uart.o
+uart.c:40:18: warning: initializing 'emu_state_t *' with an expression of type 'const emu_state_t *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+   40 |     emu_state_t *data = (const emu_state_t *) vm->priv;
+      |                  ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+uart.c:123:13: warning: unused function 'login_stop' [-Wunused-function]
+  123 | static void login_stop(uint8_t value) {
+      |             ^~~~~~~~~~
+2 warnings generated.
+  CC	main.o
+main.c:368:25: warning: format specifies type 'unsigned long' but the argument has type 'uint32_t' (aka 'unsigned int') [-Wformat]
+  368 |     printf("PC: %lx\n", vm.pc);
+      |                 ~~~     ^~~~~
+      |                 %x
+main.c:369:40: warning: format specifies type 'unsigned long' but the argument has type 'uint32_t' (aka 'unsigned int') [-Wformat]
+  369 |     printf("TIMER LO, HI: %lx, %lx\n", emu.timer_lo, emu.timer_hi);
+      |                           ~~~          ^~~~~~~~~~~~
+      |                           %x
+main.c:369:54: warning: format specifies type 'unsigned long' but the argument has type 'uint32_t' (aka 'unsigned int') [-Wformat]
+  369 |     printf("TIMER LO, HI: %lx, %lx\n", emu.timer_lo, emu.timer_hi);
+      |                                ~~~                   ^~~~~~~~~~~~
+      |                                %x
+main.c:373:12: warning: format specifies type 'unsigned long' but the argument has type 'uint32_t' (aka 'unsigned int') [-Wformat]
+  372 |     printf("PLIC: %lx %lx %lx %lx\n",
+      |                   ~~~
+      |                   %x
+  373 |            emu.plic.masked,
+      |            ^~~~~~~~~~~~~~~
+main.c:374:12: warning: format specifies type 'unsigned long' but the argument has type 'uint32_t' (aka 'unsigned int') [-Wformat]
+  372 |     printf("PLIC: %lx %lx %lx %lx\n",
+      |                       ~~~
+      |                       %x
+  373 |            emu.plic.masked,
+  374 |            emu.plic.ip,
+      |            ^~~~~~~~~~~
+main.c:375:12: warning: format specifies type 'unsigned long' but the argument has type 'uint32_t' (aka 'unsigned int') [-Wformat]
+  372 |     printf("PLIC: %lx %lx %lx %lx\n",
+      |                           ~~~
+      |                           %x
+  373 |            emu.plic.masked,
+  374 |            emu.plic.ip,
+  375 |            emu.plic.ie,
+      |            ^~~~~~~~~~~
+main.c:376:12: warning: format specifies type 'unsigned long' but the argument has type 'uint32_t' (aka 'unsigned int') [-Wformat]
+  372 |     printf("PLIC: %lx %lx %lx %lx\n",
+      |                               ~~~
+      |                               %x
+  373 |            emu.plic.masked,
+  374 |            emu.plic.ip,
+  375 |            emu.plic.ie,
+  376 |            emu.plic.active);
+      |            ^~~~~~~~~~~~~~~
+main.c:384:16: warning: unknown attribute 'nonreentrant' ignored [-Wunknown-attributes]
+  384 | __attribute__((nonreentrant))
+      |                ^~~~~~~~~~~~
+main.c:548:25: warning: format specifies type 'unsigned long' but the argument has type 'uint32_t' (aka 'unsigned int') [-Wformat]
+  548 |     printf("PC: %lx\n", vm.pc);
+      |                 ~~~     ^~~~~
+      |                 %x
+main.c:564:16: warning: unknown attribute 'nonreentrant' ignored [-Wunknown-attributes]
+  564 | __attribute__((nonreentrant))
+      |                ^~~~~~~~~~~~
+10 warnings generated.
+  CC	persistence.o
+  LD	semu
+ DTC	minimal.dtb
+/bin/sh: dtc: command not found
+make: *** [minimal.dtb] Error 127
