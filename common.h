@@ -8,6 +8,12 @@
 
 #define UNUSED __attribute__((unused))
 
+#if C64
+#define NONREENTRANT __attribute__((nonreentrant))
+#else
+#define NONREENTRANT
+#endif
+
 #define MASK(n) (~((~0UL << (n))))
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(*(a)))
