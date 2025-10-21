@@ -37,7 +37,7 @@ void save_uart(const vm_t *vm,
 
 void load_uart(vm_t *vm,
                uint8_t **ibufp) {
-    emu_state_t *data = (const emu_state_t *) vm->priv;
+    emu_state_t *data = vm->priv;
     u8250_state_t* uart = &data->uart;
     DESER8(uart->dll);
     DESER8(uart->dlh);
@@ -116,21 +116,26 @@ void u8250_check_ready(u8250_state_t *uart)
 
 extern vm_t vm;
 
-char *login_stop_test="buildroot login";
-//char *login_stop_test="syslogd";
-//char *login_stop_test="buildroot login:";
+#if STOP_AT_LOGIN
+static char login_stop_test[] = "buildroot login";
+/* static char login_stop_test[] = "syslogd"; */
+/* static char login_stop_test[] = "buildroot login:"; */
 
 static void login_stop(uint8_t value) {
-    static char *ptr = NULL;
-    if (ptr == NULL) ptr = login_stop_test;
+    static char *ptr;
+    if (ptr == NULL)
+        ptr = login_stop_test;
     if (*ptr == value) {
         ptr++;
-    } else ptr = login_stop_test;
+    } else {
+        ptr = login_stop_test;
+    }
     if (!*ptr) {
-        emu_state_t* emu = (emu_state_t*)vm.priv;
+        emu_state_t *emu = vm.priv;
         emu->stopped = true;
     }
 }
+#endif
 
 static void u8250_handle_out(u8250_state_t *uart, uint8_t value)
 {

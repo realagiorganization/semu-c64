@@ -329,7 +329,7 @@ static void mmu_fetch(vm_t *vm, uint32_t addr, uint32_t *value)
     vm->mem_fetch(vm, addr, value);
 }
 
-__attribute__((nonreentrant))
+NONREENTRANT
 static void mmu_load(vm_t *vm,
                      uint32_t addr,
                      uint8_t width,

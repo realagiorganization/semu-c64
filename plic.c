@@ -17,7 +17,7 @@ void save_plic(const vm_t *vm,
 
 void load_plic(vm_t *vm,
                uint8_t **ibufp) {
-    emu_state_t *data = (const emu_state_t *) vm->priv;
+    emu_state_t *data = vm->priv;
     plic_state_t* plic = &data->plic;
     DESER32(plic->masked);
     DESER32(plic->ip);

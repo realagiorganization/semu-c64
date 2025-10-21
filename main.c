@@ -9,6 +9,7 @@
 #include "reu.h"
 #endif
 
+#include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -365,11 +366,11 @@ vm_t vm = {
 };
 
 static void print_some_emu_state() {
-    printf("PC: %lx\n", vm.pc);
-    printf("TIMER LO, HI: %lx, %lx\n", emu.timer_lo, emu.timer_hi);
+    printf("PC: 0x%08" PRIx32 "\n", vm.pc);
+    printf("TIMER LO, HI: 0x%08" PRIx32 ", 0x%08" PRIx32 "\n", emu.timer_lo, emu.timer_hi);
     printf("stopped: %d\n", emu.stopped);
     printf("UART: %d %d\n", emu.uart.in_ready, emu.uart.in_char);
-    printf("PLIC: %lx %lx %lx %lx\n",
+    printf("PLIC: 0x%08" PRIx32 " 0x%08" PRIx32 " 0x%08" PRIx32 " 0x%08" PRIx32 "\n",
            emu.plic.masked,
            emu.plic.ip,
            emu.plic.ie,
@@ -381,7 +382,7 @@ static void print_some_emu_state() {
 uint8_t reu_saved_state[250];
 #endif
 
-__attribute__((nonreentrant))
+NONREENTRANT
 static int semu_start(int argc, char **argv)
 {
 #if C64
@@ -545,7 +546,7 @@ static int semu_start(int argc, char **argv)
 #else
     printf("Emulator stopped.\n");
     print_some_emu_state();
-    printf("PC: %lx\n", vm.pc);
+    printf("PC: 0x%08" PRIx32 "\n", vm.pc);
     pbase = (uint8_t*)emu.ram + PERSISTENCE_BASEADR;
     save_all(&vm, &pbase);
     printf("Number of bytes serialized: %ld\n", pbase - (uint8_t*)emu.ram - PERSISTENCE_BASEADR);
@@ -561,7 +562,7 @@ static int semu_start(int argc, char **argv)
     return 0;
 }
 
-__attribute__((nonreentrant))
+NONREENTRANT
 int main(int argc, char **argv)
 {
     return semu_start(argc, argv);
